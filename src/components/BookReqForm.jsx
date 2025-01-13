@@ -73,7 +73,7 @@ const BookReqForm = () => {
 
 return (
     
-    <section className="form-section">
+    <section id="book-req" className="form-section">
         <div className="form-card">
             <h1>Book Request Form</h1>
             <p>Fill out the details below to request your desired book</p>
