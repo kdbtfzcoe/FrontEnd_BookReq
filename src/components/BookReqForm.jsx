@@ -33,20 +33,22 @@ const BookReqForm = () => {
 
         // Send data to the server
         try {
-            const response = await fetch('https://pedrayaapi.azurewebsites.net/submit', {
+            const response = await fetch("https://pedrayaapi.azurewebsites.net/submit", {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify(formData), // Convert formData to JSON
             });
-
-            console.log('Response Status:', response.status); // Log the response status
             
         if (response.ok) {
             const data = await response.json();
-            console.log('Submitted Form:', data);
+            alert("Form submitted successfully");
+            console.log("API Response:", response.status);
+            console.log("Submitted Form", data);
+
             // Reset the form after successful submission
+
             setFormData({
                 name: "",
                 age: "",
@@ -57,14 +59,15 @@ const BookReqForm = () => {
                 bookAuthor: "",
                 yearOfPublication: "",
             });
+    
         } else {
-            const errorData = await response.json();
-            console.error('Error submitting form:', errorData);
-            alert('Error submitting form: ' + errorData.message);
+            alert("Failed to submit form. Please try again")
+            console.error("API Error", response.statusText);
+            
         }
     } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred while submitting the form.');
+        alert("An error occurred while submitting the form.");
+        console.error("Error", error);
     }
     };
 
